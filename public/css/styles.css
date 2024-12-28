@@ -34,7 +34,6 @@ body {
     padding: 0.5rem 0;
     z-index: 1000;
     border-bottom: 1px solid #eee;
-    width: 100%;
 }
 
 .nav-container {
@@ -43,13 +42,12 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .logo {
     height: 50px;
     width: auto;
-    margin-right: auto;
 }
 
 .nav-links {
@@ -188,11 +186,13 @@ body {
                 url('../images/truckimg.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 70px;
+    color: var(--white);
+    margin-top: 80px;
 }
 
 .about-content {
@@ -468,31 +468,25 @@ body {
 
     .nav-links {
         position: fixed;
-        right: -100%;
-        top: 70px;
+        left: -100%;
+        top: 60px;
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98);
+        background-color: white;
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 60px);
         padding: 20px;
-        transition: 0.3s ease-in-out;
-        backdrop-filter: blur(10px);
+        transition: 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .nav-links.active {
-        right: 0;
+        left: 0;
     }
 
     .nav-links a {
-        font-size: 1.2rem;
         padding: 15px 0;
         width: 100%;
         text-align: center;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .nav-links a:last-child {
-        border-bottom: none;
     }
 
     .quote-btn {
@@ -871,10 +865,7 @@ body {
 
 /* Quote Form Styles */
 .quote-section {
-    padding: 120px 0 80px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    padding: 80px 0;
 }
 
 .quote-section h1 {
@@ -982,19 +973,19 @@ body {
 
     .nav-links {
         position: fixed;
-        right: -100%;
+        left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98);
-        width: 100%;
+        background-color: white;
+        width: 250px;
         height: 100vh;
         padding: 20px;
-        transition: 0.3s ease-in-out;
-        backdrop-filter: blur(10px);
+        transition: 0.3s;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     }
 
     .nav-links.active {
-        right: 0;
+        left: 0;
     }
 
     /* Hamburger Animation */
@@ -1149,112 +1140,5 @@ select:focus {
         max-width: 280px;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 5px;
-    }
-}
-
-/* Center Our Story and Our Services sections */
-.our-story,
-.our-services {
-    text-align: center;
-    margin: 4rem auto;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.our-story h2,
-.our-services h2 {
-    margin-bottom: 2rem;
-    color: var(--dark-blue);
-}
-
-.our-story p {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Ensure images maintain aspect ratio */
-.about-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Additional mobile improvements */
-@media (max-width: 768px) {
-    .quote-section {
-        padding: 100px 20px 40px;
-    }
-
-    .about-hero {
-        height: 40vh;
-    }
-
-    .our-story,
-    .our-services {
-        margin: 2rem auto;
-    }
-}
-
-/* Fix navbar positioning and logo */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.logo {
-    height: 50px;
-    width: auto;
-    margin-right: auto;
-}
-
-.hamburger {
-    margin-left: auto;
-    padding: 10px;
-    z-index: 1001;
-}
-
-/* Ensure navbar works on all pages */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 0.5rem 0;
-    z-index: 1000;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-}
-
-/* Fix Request a Quote page navbar */
-.quote-section {
-    padding-top: 80px;
-}
-
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 0 15px;
-        position: relative;
-    }
-
-    .hamburger {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    /* Ensure logo is centered */
-    .logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0;
     }
 }
