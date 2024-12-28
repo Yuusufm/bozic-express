@@ -34,9 +34,6 @@ body {
     padding: 0.5rem 0;
     z-index: 1000;
     border-bottom: 1px solid #eee;
-    height: 70px;
-    display: flex;
-    align-items: center;
 }
 
 .nav-container {
@@ -46,7 +43,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    height: 100%;
 }
 
 .logo {
@@ -58,14 +54,12 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
-    font-family: 'Inter', sans-serif;
 }
 
 .nav-links a {
     color: var(--text-dark);
     text-decoration: none;
     font-weight: 500;
-    font-size: 16px;
     transition: color 0.3s ease;
 }
 
@@ -516,16 +510,6 @@ body {
         height: 2px;
         margin: 4px 0;
     }
-
-    .logo {
-        height: 40px;
-        margin-left: 15px;
-        padding: 5px 0;
-    }
-
-    .hamburger {
-        margin-right: 15px;
-    }
 }
 
 /* Animations */
@@ -885,9 +869,10 @@ body {
 
 /* Quote Form Styles */
 .quote-section {
-    padding: 80px 20px 40px;
+    padding: 120px 0 80px;
     min-height: 100vh;
-    background: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .quote-section h1 {
@@ -907,9 +892,10 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    margin-top: 2rem;
     max-width: 800px;
-    margin: 20px auto 0;
-    width: 100%;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .form-grid {
@@ -1002,11 +988,10 @@ body {
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.98);
         width: 100%;
-        height: calc(100vh - 70px);
+        height: 100vh;
         padding: 20px;
         transition: 0.3s ease-in-out;
         backdrop-filter: blur(10px);
-        z-index: 999;
     }
 
     .nav-links.active {
@@ -1227,42 +1212,7 @@ select:focus {
     }
 }
 
-/* Fix Request a Quote page specific styles */
-.quote-section {
-    padding: 80px 20px 40px;
-    min-height: 100vh;
-    background: white;
-}
-
-.quote-section .nav-links {
-    font-family: 'Inter', sans-serif;
-}
-
-.quote-section .nav-links a {
-    font-size: 16px;
-    font-weight: 500;
-}
-
-/* Ensure navigation works on all pages */
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        right: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98);
-        width: 100%;
-        height: calc(100vh - 70px);
-        padding: 20px;
-        transition: 0.3s ease-in-out;
-        backdrop-filter: blur(10px);
-        z-index: 999;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-}
+/* ... existing code ... */
 
 /* Fix text colors for sections with dark backgrounds */
 .about-hero h1,
@@ -1278,40 +1228,10 @@ select:focus {
     margin: 2rem auto;
 }
 
-h1.section-title,
-h2.section-title {
+/* Ensure the headings themselves are centered */
+.our-services,
+.our-story {
     text-align: center;
-    color: var(--dark-blue);
+    width: 100%;
     margin-bottom: 2rem;
-}
-
-/* Specific fixes for About page */
-.about-hero {
-    position: relative;
-    color: var(--white);
-}
-
-.about-hero h1,
-.about-hero .subtitle {
-    color: var(--white);
-    position: relative;
-    z-index: 2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-/* Add overlay to ensure text is readable */
-.about-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Darkens the background */
-    z-index: 1;
-}
-
-.about-hero > * {
-    position: relative;
-    z-index: 2;
 }
