@@ -34,6 +34,9 @@ body {
     padding: 0.5rem 0;
     z-index: 1000;
     border-bottom: 1px solid #eee;
+    height: 70px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-container {
@@ -43,6 +46,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    height: 100%;
 }
 
 .logo {
@@ -512,6 +516,16 @@ body {
         height: 2px;
         margin: 4px 0;
     }
+
+    .logo {
+        height: 40px;
+        margin-left: 15px;
+        padding: 5px 0;
+    }
+
+    .hamburger {
+        margin-right: 15px;
+    }
 }
 
 /* Animations */
@@ -871,10 +885,9 @@ body {
 
 /* Quote Form Styles */
 .quote-section {
-    padding-top: 80px;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
+    padding: 80px 20px 40px;
+    min-height: 100vh;
+    background: white;
 }
 
 .quote-section h1 {
@@ -894,10 +907,9 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
-    margin-top: 2rem;
     max-width: 800px;
-    margin: 0 auto;
-    width: 90%;
+    margin: 20px auto 0;
+    width: 100%;
 }
 
 .form-grid {
@@ -1217,10 +1229,9 @@ select:focus {
 
 /* Fix Request a Quote page specific styles */
 .quote-section {
-    padding-top: 80px;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
+    padding: 80px 20px 40px;
+    min-height: 100vh;
+    background: white;
 }
 
 .quote-section .nav-links {
@@ -1251,4 +1262,56 @@ select:focus {
     .nav-links.active {
         right: 0;
     }
+}
+
+/* Fix text colors for sections with dark backgrounds */
+.about-hero h1,
+.about-hero p {
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Center section titles */
+.our-services,
+.our-story {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+h1.section-title,
+h2.section-title {
+    text-align: center;
+    color: var(--dark-blue);
+    margin-bottom: 2rem;
+}
+
+/* Specific fixes for About page */
+.about-hero {
+    position: relative;
+    color: var(--white);
+}
+
+.about-hero h1,
+.about-hero .subtitle {
+    color: var(--white);
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Add overlay to ensure text is readable */
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Darkens the background */
+    z-index: 1;
+}
+
+.about-hero > * {
+    position: relative;
+    z-index: 2;
 }
