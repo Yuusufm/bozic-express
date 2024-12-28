@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Bozic Express Inc</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Consistent Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html">
+                <img src="../images/Bozic_Icon.png" alt="Bozic Express Inc" class="logo">
+            </a>
+            <!-- Add hamburger button here -->
+            <button class="hamburger" aria-label="Toggle navigation menu" role="button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Careers Content -->
+    <section class="careers-hero">
+        <div class="hero-content">
+            <h1>Join Our Team</h1>
+            <p>Drive Your Career Forward with Bozic Express Inc</p>
+        </div>
+    </section>
+
+    <section class="careers-info">
+        <div class="container">
+            <div class="careers-grid">
+                <div class="careers-text">
+                    <h2>Why Drive With Us?</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h3>Competitive Pay</h3>
+                            <p>Excellent compensation package for our drivers</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-truck"></i>
+                            <h3>Modern Fleet</h3>
+                            <p>Drive well-maintained, modern equipment</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-route"></i>
+                            <h3>Regular Routes</h3>
+                            <p>Consistent routes between Canada and USA</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-headset"></i>
+                            <h3>24/7 Support</h3>
+                            <p>Round-the-clock dispatch support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="application-section">
+        <div class="container">
+            <h2 class = "apply-now-title">Apply Now</h2>
+            <div class="application-wrapper">
+                <form class="application-form" action="/submit-application" method="POST" enctype="multipart/form-data">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name*</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name*</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number*</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Driver Information -->
+                    <div class="form-section">
+                        <h3>Driver Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="driverType">Driver Type*</label>
+                                <select id="driverType" name="driverType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="company">Company Driver</option>
+                                    <option value="owner-operator">Owner Operator</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Years of Experience*</label>
+                                <input type="number" id="experience" name="experience" min="0" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cdlLicense">CDL License Number*</label>
+                            <input type="text" id="cdlLicense" name="cdlLicense" required>
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload -->
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-group">
+                            <label for="resume">Upload Resume (PDF only)*</label>
+                            <input type="file" id="resume" name="resume" accept=".pdf" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Additional Comments</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Submit Application</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <img src="../images/Bozic_Icon.png" alt="Bozic Express Inc" class="footer-logo">
+                    <p>Join our team of professional drivers at Bozic Express Inc.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> <a href="tel:519-501-1616">519-501-1616</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bozicexpressinc@gmail.com">bozicexpressinc@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bozic Express Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

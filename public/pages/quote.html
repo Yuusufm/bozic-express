@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Quote - Bozic Express Inc</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html">
+                <img src="../images/Bozic_Icon.png" alt="Bozic Express Inc" class="logo">
+            </a>
+            <button class="hamburger" aria-label="Toggle navigation menu" role="button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="careers.html">Careers</a>
+                <a href="../index.html#contact">Contact</a>
+                <a href="quote.html" class="quote-btn">Request Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quote Form Section -->
+    <section class="quote-section">
+        <div class="container">
+            <h1>Request a Quote</h1>
+            <p class="section-description">Get a quick quote for your transportation needs</p>
+
+            <form id="quote-form" class="quote-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Contact Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serviceType">Service Type Required</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Select Service Type</option>
+                            <option value="dryvan">Dry Van</option>
+                            <option value="flatbed">Flatbed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="loadType">Load Type</label>
+                        <input type="text" id="loadType" name="loadType" 
+                               placeholder="e.g Pallets, Construction Materials" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="commodity">Commodity/Freight Details</label>
+                        <input type="text" id="commodity" name="commodity" 
+                               placeholder="e.g Electronics, Furniture" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (lbs)</label>
+                        <input type="number" id="weight" name="weight" 
+                               placeholder="Approximate weight" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupLocation">Pickup Location</label>
+                    <input type="text" id="pickupLocation" name="pickupLocation" 
+                           placeholder="e.g 123 Main Street, City, State/Province, Postal Code, Country" 
+                           title="Please enter complete address including street number, name, city, state/province, postal code, and country"
+                           required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pickupDate">Pickup Date</label>
+                        <input type="date" id="pickupDate" name="pickupDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickupTime">Pickup Time</label>
+                        <input type="time" id="pickupTime" name="pickupTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryLocation">Delivery Location</label>
+                    <input type="text" id="deliveryLocation" name="deliveryLocation" 
+                           placeholder="e.g 456 Oak Avenue, City, State/Province, Postal Code, Country"
+                           title="Please enter complete address including street number, name, city, state/province, postal code, and country"
+                           required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deliveryDate">Delivery Date</label>
+                        <input type="date" id="deliveryDate" name="deliveryDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryTime">Delivery Time</label>
+                        <input type="time" id="deliveryTime" name="deliveryTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" name="details" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Request Quote</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for pickup and delivery
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('pickupDate').min = today;
+            document.getElementById('deliveryDate').min = today;
+
+            // Update delivery date minimum when pickup date changes
+            document.getElementById('pickupDate').addEventListener('change', function() {
+                document.getElementById('deliveryDate').min = this.value;
+            });
+
+            // Form submission
+            const quoteForm = document.getElementById('quote-form');
+            quoteForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    company: document.getElementById('company').value,
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    serviceType: document.getElementById('serviceType').value,
+                    loadType: document.getElementById('loadType').value,
+                    commodity: document.getElementById('commodity').value,
+                    weight: document.getElementById('weight').value,
+                    pickupLocation: document.getElementById('pickupLocation').value,
+                    pickupDate: document.getElementById('pickupDate').value,
+                    pickupTime: document.getElementById('pickupTime').value,
+                    deliveryLocation: document.getElementById('deliveryLocation').value,
+                    deliveryDate: document.getElementById('deliveryDate').value,
+                    deliveryTime: document.getElementById('deliveryTime').value,
+                    details: document.getElementById('details').value
+                };
+
+                try {
+                    const response = await fetch('/submit-quote', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        window.location.href = '/pages/quote-success.html';
+                    } else {
+                        alert(`Failed to submit quote request: ${data.error}`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the quote. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

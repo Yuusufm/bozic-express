@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Bozic Express</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .status-select {
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-view {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .details-row {
+            display: none;
+            background: #f8f9fa;
+        }
+        .details-content {
+            padding: 20px;
+        }
+        .status-pending { color: #ffc107; }
+        .status-interviewed { color: #17a2b8; }
+        .status-accepted { color: #28a745; }
+        .status-rejected { color: #dc3545; }
+        .tab-buttons {
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+        .tab-button.active {
+            background: #007bff;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="applications">Applications</button>
+            <button class="tab-button" data-tab="quotes">Quotes</button>
+        </div>
+
+        <div id="applications" class="tab-content active">
+            <h2>Job Applications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Driver Type</th>
+                        <th>Experience</th>
+                        <th>Resume</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="applications-table"></tbody>
+            </table>
+        </div>
+
+        <div id="quotes" class="tab-content">
+            <h2>Quote Requests</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Service Type</th>
+                        <th>Pickup</th>
+                        <th>Delivery</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="quotes-table"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        console.log('Admin panel script loaded');
+
+        // Tab switching functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Load applications
+        async function loadApplications() {
+            console.log('Loading applications...');
+            try {
+                const credentials = btoa('admin:bozic2024');
+                const response = await fetch('/api/applications', {
+                    headers: {
+                        'Authorization': `Basic ${credentials}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const applications = await response.json();
+                console.log('Applications data:', applications);
+                
+                const tbody = document.getElementById('applications-table');
+                tbody.innerHTML = applications.map(app => `
+                    <tr>
+                        <td>${new Date(app.submitDate).toLocaleDateString()}</td>
+                        <td>
+                            First Name: ${app.firstName}<br>
+                            Last Name: ${app.lastName}
+                        </td>
+                        <td>
+                            Email: <a href="mailto:${app.email}">${app.email}</a><br>
+                            Phone: ${app.phone}
+                        </td>
+                        <td>
+                            Driver Type: ${app.driverType}<br>
+                            Experience: ${app.experience} years<br>
+                            CDL License: ${app.cdlLicense}
+                        </td>
+                        <td>${app.experience} years</td>
+                        <td>
+                            ${app.resumePath ? 
+                                `<a href="/uploads/${app.resumePath}" target="_blank">View Resume</a>` : 
+                                'No Resume'}
+                        </td>
+                        <td>
+                            <button class="delete-application" data-id="${app.id}">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Add event listeners after generating the table
+                document.querySelectorAll('.delete-application').forEach(button => {
+                    button.addEventListener('click', function() {
+                        deleteApplication(this.dataset.id);
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading applications:', error);
+            }
+        }
+
+        // Load quotes
+        async function loadQuotes() {
+            console.log('Loading quotes...');
+            try {
+                const credentials = btoa('admin:bozic2024');
+                const response = await fetch('/api/quotes', {
+                    headers: {
+                        'Authorization': `Basic ${credentials}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const quotes = await response.json();
+                console.log('Quotes data:', quotes);
+                
+                const tbody = document.getElementById('quotes-table');
+                tbody.innerHTML = quotes.map(quote => `
+                    <tr>
+                        <td>${new Date(quote.created_at).toLocaleDateString()}</td>
+                        <td>${quote.company || 'N/A'}</td>
+                        <td>
+                            Name: ${quote.name}<br>
+                            Email: <a href="mailto:${quote.email}">${quote.email}</a><br>
+                            Phone: ${quote.phone}
+                        </td>
+                        <td>
+                            Service: ${quote.serviceType || 'N/A'}<br>
+                            Load Type: ${quote.loadType || 'N/A'}<br>
+                            Commodity: ${quote.commodity || 'N/A'}<br>
+                            Weight: ${quote.weight || 'N/A'}
+                        </td>
+                        <td>
+                            Location: ${quote.pickupLocation || 'N/A'}<br>
+                            Date: ${quote.pickupDate || 'N/A'}<br>
+                            Time: ${quote.pickupTime || 'N/A'}
+                        </td>
+                        <td>
+                            Location: ${quote.deliveryLocation || 'N/A'}<br>
+                            Date: ${quote.deliveryDate || 'N/A'}<br>
+                            Time: ${quote.deliveryTime || 'N/A'}
+                        </td>
+                        <td>
+                            <button class="delete-quote" data-id="${quote.id}">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Add event listeners for quote deletion
+                document.querySelectorAll('.delete-quote').forEach(button => {
+                    button.addEventListener('click', function() {
+                        deleteQuote(this.dataset.id);
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading quotes:', error);
+            }
+        }
+
+        // Delete functions
+        async function deleteApplication(id) {
+            if (confirm('Are you sure you want to delete this application?')) {
+                try {
+                    const credentials = btoa('admin:bozic2024');
+                    const response = await fetch(`/api/applications/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Basic ${credentials}`
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    console.log('Application deleted successfully');
+                    // Reload the applications list
+                    loadApplications();
+                } catch (error) {
+                    console.error('Error deleting application:', error);
+                    alert('Failed to delete application');
+                }
+            }
+        }
+
+        async function deleteQuote(id) {
+            if (confirm('Are you sure you want to delete this quote?')) {
+                try {
+                    const credentials = btoa('admin:bozic2024');
+                    const response = await fetch(`/api/quotes/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Basic ${credentials}`
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    console.log('Quote deleted successfully');
+                    // Reload the quotes list
+                    loadQuotes();
+                } catch (error) {
+                    console.error('Error deleting quote:', error);
+                    alert('Failed to delete quote');
+                }
+            }
+        }
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+            loadQuotes();
+            loadApplications();
+        });
+    </script>
+</body>
+</html> 

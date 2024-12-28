@@ -1,0 +1,26 @@
+{
+  "name": "bozic-express",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-basic-auth": "^1.2.1",
+    "helmet": "^8.0.0",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.9.16",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

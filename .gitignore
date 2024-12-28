@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Database
+applications.db
+*.db
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
