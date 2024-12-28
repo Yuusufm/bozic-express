@@ -31,7 +31,7 @@ body {
     left: 0;
     right: 0;
     background: white;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     z-index: 1000;
     border-bottom: 1px solid #eee;
 }
@@ -42,7 +42,7 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .logo {
@@ -77,17 +77,17 @@ body {
                 url('../images/truckimg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 73px;
+    margin-top: 60px;
 }
 
 .hero-content {
     max-width: 800px;
-    padding: 0 20px;
-    margin-top: 80px;
+    padding: 0 15px;
+    margin-top: 0;
 }
 
 .hero-text h1 {
@@ -435,6 +435,14 @@ body {
 
     .hero-text h1 {
         font-size: 2.5rem;
+        padding: 0 15px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        padding: 0 15px;
+        margin-bottom: 1.5rem;
     }
 
     .about-grid {
@@ -456,6 +464,47 @@ body {
     .admin-table {
         display: block;
         overflow-x: auto;
+    }
+
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 60px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        height: calc(100vh - 60px);
+        padding: 20px;
+        transition: 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .quote-btn {
+        margin: 10px auto;
+        padding: 12px 24px;
+        width: 200px;
+        text-align: center;
+    }
+
+    .hamburger {
+        padding: 10px;
+        margin-right: -10px;
+    }
+
+    .bar {
+        width: 25px;
+        height: 2px;
+        margin: 4px 0;
     }
 }
 
@@ -787,7 +836,7 @@ body {
 .footer-contact a,
 .footer-info p,
 .footer-bottom p {
-    color: var(--white) !important; /* Force white color */
+    color: var(--white) !important; 
     text-decoration: none;
 }
 
@@ -1011,5 +1060,85 @@ select:focus {
     
     .contact-wrapper {
         padding: 0 15px; 
+    }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2rem;  /* Even smaller for very small screens */
+    }
+
+    .nav-container {
+        padding: 0 10px;  /* Tighter padding on very small screens */
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Footer Content Centering for Mobile */
+@media (max-width: 768px) {
+    .footer-info {
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .footer-contact-info {
+        text-align: center;
+    }
+
+    .footer-contact-info p,
+    .footer-contact-info a {
+        display: block;
+        margin: 10px auto;
+    }
+
+    /* Center Quick Links and Services sections */
+    .footer h4,
+    .footer-links,
+    .footer-services {
+        text-align: center;
+    }
+
+    .footer-links ul,
+    .footer-services ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Center the description text */
+    .footer p {
+        text-align: center;
+        margin: 15px auto;
+        max-width: 90%;
+    }
+
+    /* Add some spacing between sections */
+    .footer-grid > div {
+        margin-bottom: 30px;
+    }
+
+    /* Center contact information */
+    .footer-contact a,
+    .footer-contact p {
+        text-align: center;
+        display: block;
+    }
+
+    /* Make phone and email links more prominent */
+    a[href^="tel:"],
+    a[href^="mailto:"] {
+        display: block;
+        padding: 10px;
+        margin: 10px auto;
+        max-width: 280px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
     }
 }
