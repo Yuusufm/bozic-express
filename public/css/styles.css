@@ -34,6 +34,7 @@ body {
     padding: 0.5rem 0;
     z-index: 1000;
     border-bottom: 1px solid #eee;
+    width: 100%;
 }
 
 .nav-container {
@@ -42,12 +43,13 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
 .logo {
     height: 50px;
     width: auto;
+    margin-right: auto;
 }
 
 .nav-links {
@@ -1192,5 +1194,67 @@ select:focus {
     .our-story,
     .our-services {
         margin: 2rem auto;
+    }
+}
+
+/* Fix navbar positioning and logo */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    margin-right: auto;
+}
+
+.hamburger {
+    margin-left: auto;
+    padding: 10px;
+    z-index: 1001;
+}
+
+/* Ensure navbar works on all pages */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 0.5rem 0;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+/* Fix Request a Quote page navbar */
+.quote-section {
+    padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        position: relative;
+    }
+
+    .hamburger {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Ensure logo is centered */
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
     }
 }
