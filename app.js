@@ -22,7 +22,9 @@ console.log('Email config:', {
 const adminAuth = basicAuth({
     users: { 
         [process.env.ADMIN_USER]: process.env.ADMIN_PASS 
-    }
+    },
+    challenge: true, // This forces the authentication prompt
+    realm: 'Bozic Express Admin'
 });
 
 // Port configuration
@@ -145,6 +147,7 @@ app.use(helmet({
         },
     },
 }));
+app.use('/views', express.static(path.join(__dirname, 'views')));
 
 // Create email transporter
 const transporter = nodemailer.createTransport({
@@ -288,10 +291,28 @@ app.post('/submit-application', upload.single('resume'), async (req, res) => {
     }
 });
 
-// Admin route to view applications
+// Admin route with error handling
 app.get('/admin', adminAuth, (req, res) => {
-    console.log('Admin panel accessed');
-    res.sendFile(path.join(__dirname, 'views/admin.html'));
+    console.log('Admin authentication successful');
+    console.log('Current directory:', __dirname);
+    
+    const adminPath = path.join(__dirname, 'views', 'admin.html');
+    console.log('Attempting to serve:', adminPath);
+    
+    // Check if file exists
+    if (!fs.existsSync(adminPath)) {
+        console.error('Admin file not found at:', adminPath);
+        return res.status(404).send('Admin page not found');
+    }
+    
+    res.sendFile(adminPath, (err) => {
+        if (err) {
+            console.error('Error sending admin file:', err);
+            res.status(500).send('Error loading admin page');
+        } else {
+            console.log('Admin file sent successfully');
+        }
+    });
 });
 
 // API endpoint to get applications
