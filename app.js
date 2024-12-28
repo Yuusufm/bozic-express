@@ -13,11 +13,10 @@ require('events').EventEmitter.defaultMaxListeners = 15;
 
 const app = express();
 
-// Email configuration
-const emailConfig = {
+console.log('Email config:', {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-};
+    pass: process.env.EMAIL_PASS ? '***exists***' : '***missing***'
+});
 
 // Admin authentication
 const adminAuth = basicAuth({
@@ -34,7 +33,7 @@ if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
 }
 
-// Configure multer for file uploads
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
@@ -152,7 +151,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
+        pass: process.env.EMAIL_PASS
     }
 });
 
