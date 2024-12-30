@@ -46,7 +46,7 @@ body {
 }
 
 .logo {
-    height: 50px;
+    height: 120px;
     width: auto;
 }
 
@@ -105,78 +105,92 @@ body {
 
 /* Services Section */
 .services {
-    padding: 5rem 0;
-    background: var(--light-gray);
+    padding: 80px 0;
+    margin-bottom: 50px;
+    background-color: #fff;
 }
 
 .section-title {
     text-align: center;
+    color: #0D47A1;
     font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--dark-blue);
+    margin-bottom: 50px;
     position: relative;
-    padding-bottom: 15px;
 }
 
-.section-title::after {
+.section-title:after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: var(--secondary-color);
+    background-color: #FFA500;
 }
 
+/* Services grid layout */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.services-grid::after {
-    content: "";
-    grid-column: span 1;
-}
-
+/* Position the fourth card (Cross-Border Services) */
 .services-grid .service-card:last-child {
     grid-column: 2;
-    justify-self: center;
+    grid-row: 2;
     width: 100%;
 }
 
-@media (max-width: 992px) {
-    .services-grid .service-card:last-child {
-        grid-column: auto;
-    }
-}
-
+/* Service card styling */
 .service-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     text-align: center;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-}
-
-.service-icon {
+/* Service icons */
+.service-icon,
+.service-card i,
+.service-card img {
     font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    color: #0D47A1 !important;  /* Darker blue to match Send Message button */
+    margin-bottom: 20px;
 }
 
 .service-card h3 {
-    margin-bottom: 1rem;
-    color: var(--dark-blue);
+    color: #0D47A1;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    color: #333333 !important;  /* Dark gray, almost black */
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-grid .service-card:last-child {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* About Page Specific */
@@ -529,19 +543,25 @@ body {
 }
 
 /* Contact Section Styles */
+.contact {
+    padding: 80px 0 50px 0;  /* Add padding at bottom to separate from footer */
+    background-color: white;  /* Ensure white background */
+}
+
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .contact-card {
-    background: var(--white);
+    background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
 .contact-header {
@@ -557,7 +577,7 @@ body {
 }
 
 .contact-tagline {
-    color: var(--text-light);
+    color: #333333 !important;  /* Dark gray, almost black */
     margin-bottom: 2rem;
 }
 
@@ -590,10 +610,11 @@ body {
 
 /* Form Styles */
 .contact-form-wrapper {
-    background: var(--white);
+    background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    margin-bottom: 50px;  /* Add space before footer */
 }
 
 .form-row {
@@ -1061,15 +1082,17 @@ select:focus {
 /* Add more comprehensive mobile styles */
 @media (max-width: 768px) {
     .nav-container {
-        padding: 0 15px; 
+        padding: 0 15px;  /* Reduced padding */
     }
     
-    .hero-text h1 {
-        font-size: 2rem;
+    .logo {
+        height: 70px;  /* Increased from 60px for mobile */
+        margin-left: 5px;
     }
-    
-    .contact-wrapper {
-        padding: 0 15px; 
+
+    /* Keep hamburger menu aligned */
+    .hamburger {
+        margin-right: 5px;  /* Match logo margin */
     }
 }
 
@@ -1237,12 +1260,15 @@ select:focus {
 }
 
 .footer-cta-text {
+    color: white !important;  /* Keep this white since it's in the blue footer */
     text-align: center;
+    margin: 15px auto;
 }
 .footer-logo {
     display: block;
     margin: 0 auto;
     text-align: center;
+    height: 120px;
 }
 
 /* Footer Content Centering */
@@ -1284,4 +1310,188 @@ select:focus {
 .footer-logo {
     display: block;
     margin: 0 auto;
+}
+
+/* Footer background color override */
+.footer {
+    background-color: #0D47A1 !important;  /* Darker blue to match Send Message button */
+}
+
+.footer-bottom {
+    background-color: #0D47A1 !important;  /* Same darker blue */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Footer headings with orange lines above */
+.footer h4 {
+    text-align: center;
+    margin-top: 25px;
+    position: relative;
+    color: white !important;
+}
+
+.footer h4:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px;
+    width: 60px;
+    height: 3px;
+    background-color: #FFA500 !important;  /* Keep orange line */
+}
+
+/* Call Now button styling override */
+.footer-cta .cta-button {
+    background-color: #FFA500 !important;  /* Orange */
+    color: white !important;
+    padding: 12px 40px;  /* Added more horizontal padding */
+    border-radius: 6px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-cta .cta-button:hover {
+    background-color: #FF8C00 !important;  /* Darker orange on hover */
+    transform: translateY(-2px);
+}
+
+/* Position the fourth box (Cross-Border Services) */
+.cross-border-service {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+}
+
+/* Service card styling */
+.service-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Service icons */
+.service-card img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 20px;
+    color: var(--accent-orange);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cross-border-service {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Footer CTA section alignment */
+.footer-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-cta-text {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Call Now button positioning */
+.footer-cta .cta-button {
+    background-color: #FFA500 !important;  /* Orange */
+    color: white !important;
+    padding: 12px 40px;  /* Added more horizontal padding */
+    border-radius: 6px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-cta .cta-button:hover {
+    background-color: #FF8C00 !important;  /* Darker orange on hover */
+    transform: translateY(-2px);
+}
+
+/* Logo positioning */
+.logo {
+    height: 80px;
+    width: auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        height: 70px;
+        margin: 0;
+    }
+
+    .hamburger {
+        position: absolute;
+        right: 15px;
+        margin: 0;
+    }
+}
+
+/* Form element styles */
+input,
+select,
+textarea,
+input::placeholder,
+textarea::placeholder {
+    font-family: 'Inter', sans-serif;  /* Match site font */
+    font-size: 16px;  /* Comfortable reading size */
+    color: #666;  /* Slightly darker placeholder text */
+}
+
+/* Style the select dropdown */
+select {
+    appearance: none;  /* Remove default styling */
+    background-image: url("data:image/svg+xml,...");  /* Keep your custom dropdown arrow */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Style text inputs and textareas */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
 }
